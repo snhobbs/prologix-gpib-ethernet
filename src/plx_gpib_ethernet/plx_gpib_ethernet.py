@@ -14,6 +14,16 @@ class PrologixGPIBEthernet:
         self.set_timeout(timeout)
         self._read_mode = self.read_modes[0]
 
+    def __enter__(self):
+        self.connect()
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.close()
+
+    def interface_clear(self):
+        self._send('++ifc')
+
     def connect(self):
         self.socket.connect((self.host, self.PORT))
         self._setup()
