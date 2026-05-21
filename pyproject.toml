@@ -18,6 +18,12 @@ dependencies = [
   "pyserial"
 ]
 
+[project.optional-dependencies]
+cli = ["click>=8"]
+
+[project.scripts]
+prologix = "plx_gpib_ethernet.cli:main"
+
 [tool.setuptools.packages.find]
 where = ["src", "src/plx_gpib_ethernet"]
 
